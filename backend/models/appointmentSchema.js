@@ -75,10 +75,10 @@ const appointmentSchema = new mongoose.Schema({
     required: [true, "Patient Id Is Required!"],
   },
 
-  // roomId: {
-  //   type: String,
-  //   default: null,
-  // },
+  roomId: {
+    type: String,
+    default: null,
+  },
 
   status: {
     type: String,
