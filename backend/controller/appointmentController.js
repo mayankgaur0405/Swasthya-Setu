@@ -88,24 +88,86 @@ export const getAllAppointments = catchAsyncErrors(async (req, res, next) => {
     appointments,
   });
 });
+// export const updateAppointmentStatus = catchAsyncErrors(
+//   async (req, res, next) => {
+//     const { id } = req.params;
+//     let appointment = await Appointment.findById(id);
+//     if (!appointment) {
+//       return next(new ErrorHandler("Appointment not found!", 404));
+//     }
+//     appointment = await Appointment.findByIdAndUpdate(id, req.body, {
+//       new: true,
+//       runValidators: true,
+//       useFindAndModify: false,
+//     });
+//     res.status(200).json({
+//       success: true,
+//       message: "Appointment Status Updated!",
+//     });
+//   }
+// );
+
 export const updateAppointmentStatus = catchAsyncErrors(
   async (req, res, next) => {
     const { id } = req.params;
     let appointment = await Appointment.findById(id);
+
     if (!appointment) {
       return next(new ErrorHandler("Appointment not found!", 404));
     }
+
+    // Update status
     appointment = await Appointment.findByIdAndUpdate(id, req.body, {
       new: true,
       runValidators: true,
       useFindAndModify: false,
     });
+
+    // Generate roomId only if approved
+    let roomId = null;
+    if (appointment.status === "approved") {
+      roomId = `room_${appointment.doctorId}_${appointment.patientId}`;
+    }
+
     res.status(200).json({
       success: true,
       message: "Appointment Status Updated!",
+      roomId: `room_${appointment.doctorId}_${appointment.patientId}`,
     });
   }
 );
+
+
+// export const updateAppointmentStatus = catchAsyncErrors(
+//   async (req, res, next) => {
+//     const { id } = req.params;
+//     let appointment = await Appointment.findById(id);
+
+//     if (!appointment) {
+//       return next(new ErrorHandler("Appointment not found!", 404));
+//     }
+
+//     // Update status
+//     appointment.status = req.body.status;
+//     await appointment.save();
+
+//     // Generate roomId only if accepted
+//     let roomId = null;
+//     if (appointment.status === "Accepted") {
+//       roomId = `room_${appointment.doctorId}_${appointment.patientId}`;
+//       appointment.roomId = roomId;
+//       await appointment.save();
+//     }
+
+//     res.status(200).json({
+//       success: true,
+//       message: "Appointment Status Updated!",
+//       roomId,
+//     });
+//   }
+//);
+
+
 export const deleteAppointment = catchAsyncErrors(async (req, res, next) => {
   const { id } = req.params;
   const appointment = await Appointment.findById(id);
@@ -118,3 +180,13 @@ export const deleteAppointment = catchAsyncErrors(async (req, res, next) => {
     message: "Appointment Deleted!",
   });
 });
+
+
+export const getMyAppointments = catchAsyncErrors(async (req, res, next) => {
+  const appointments = await Appointment.find({ patientId: req.user._id });
+  res.status(200).json({
+    success: true,
+    appointments,
+  });
+});
+

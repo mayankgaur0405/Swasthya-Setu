@@ -1,0 +1,43 @@
+.page.appointments-page {
+  padding-top: 100px; /* adjust based on navbar height */
+  padding-left: 1rem;
+  padding-right: 1rem;
+  min-height: 100vh;
+  background-color: white;
+  z-index: 1;
+  position: relative;
+}
+
+
+.appointments-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.appointments-table th,
+.appointments-table td {
+  border-bottom: 1px solid #ccc;
+  padding: 12px;
+  text-align: center;
+}
+
+.join-call-btn {
+  background-color: #6c63ff;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.join-call-btn:hover {
+  background-color: #574b90;
+}
+
+.pending-msg {
+  color: gray;
+  font-size: 14px;
+}

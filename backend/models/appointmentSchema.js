@@ -74,6 +74,12 @@ const appointmentSchema = new mongoose.Schema({
     ref: "User",
     required: [true, "Patient Id Is Required!"],
   },
+
+  // roomId: {
+  //   type: String,
+  //   default: null,
+  // },
+
   status: {
     type: String,
     enum: ["Pending", "Accepted", "Rejected"],
