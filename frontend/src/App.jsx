@@ -12,9 +12,9 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { Context } from "./main";
 import Login from "./Pages/Login";
-import Room from "./pages/Room";
-import VideoCallHome from "./pages/VideoCallHome";
-import MyAppointments from "./pages/MyAppointments";
+import Room from "./Pages/Room";
+import VideoCallHome from "./Pages/VideoCallHome";
+import MyAppointments from "./Pages/MyAppointments.jsx";
 
 const App = () => {
   const { isAuthenticated, setIsAuthenticated, setUser } = useContext(Context);
