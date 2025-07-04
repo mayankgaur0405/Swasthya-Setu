@@ -1,0 +1,15 @@
+.room-container {
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.zego-meeting {
+  width: 100%;
+  max-width: 10000px;
+  height: 900px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}

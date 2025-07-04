@@ -43,14 +43,26 @@ const Footer = () => {
         <hr />
         <div className="content">
           <div>
-            <img src="/Swasthya-Setu-Logo.png" alt="logo" className="logo-img"/>
+            <img
+              src="/Swasthya-Setu-Logo.png"
+              alt="logo"
+              className="logo-img"
+            />
           </div>
           <div>
             <h4>Quick Links</h4>
             <ul>
-              <Link to={"/"}>Home</Link>
-              <Link to={"/appointment"}>Appointment</Link>
-              <Link to={"/about"}>About</Link>
+              <ul>
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                <li>
+                  <Link to="/appointment">Appointment</Link>
+                </li>
+                <li>
+                  <Link to="/about">About</Link>
+                </li>
+              </ul>
             </ul>
           </div>
           <div>
@@ -86,4 +98,3 @@ const Footer = () => {
 };
 
 export default Footer;
-

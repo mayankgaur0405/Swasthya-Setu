@@ -2,12 +2,14 @@
   padding-top: 100px; /* adjust based on navbar height */
   padding-left: 1rem;
   padding-right: 1rem;
+  padding-bottom: 120px; /* enough space for footer */
   min-height: 100vh;
   background-color: white;
-  z-index: 1;
   position: relative;
+  box-sizing: border-box;
+  z-index: 1;
+  overflow: hidden;
 }
-
 
 .appointments-table {
   width: 100%;

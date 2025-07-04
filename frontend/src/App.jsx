@@ -1,6 +1,11 @@
 ﻿import React, { useContext, useEffect } from "react";
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import Home from "./Pages/Home";
 import Appointment from "./Pages/Appointment";
 import AboutUs from "./Pages/AboutUs";
@@ -16,8 +21,15 @@ import Room from "./Pages/Room";
 import VideoCallHome from "./Pages/VideoCallHome";
 import MyAppointments from "./Pages/MyAppointments.jsx";
 
-const App = () => {
+const AppWrapper = () => {
   const { isAuthenticated, setIsAuthenticated, setUser } = useContext(Context);
+  const location = useLocation();
+
+  const hideFooterRoutes = ["/video-call", "/room"];
+
+  const shouldHideFooter = hideFooterRoutes.some((path) =>
+    location.pathname.startsWith(path)
+  );
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -40,22 +52,28 @@ const App = () => {
 
   return (
     <>
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/appointment" element={<Appointment />} />
-          <Route path="/about" element={<AboutUs />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/video-call" element={<VideoCallHome />} />
-          <Route path="/room/:roomId" element={<Room />} />
-          <Route path="/my-appointments" element={<MyAppointments />} />
-        </Routes>
-        <Footer />
-        <ToastContainer position="top-center" />
-      </Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/appointment" element={<Appointment />} />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/video-call" element={<VideoCallHome />} />
+        <Route path="/room/:roomId" element={<Room />} />
+        <Route path="/my-appointments" element={<MyAppointments />} />
+      </Routes>
+      {!shouldHideFooter && <Footer />}
+      <ToastContainer position="top-center" />
     </>
+  );
+};
+
+const App = () => {
+  return (
+    <Router>
+      <AppWrapper />
+    </Router>
   );
 };
 

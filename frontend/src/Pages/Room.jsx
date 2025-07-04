@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { ZegoUIKitPrebuilt } from "@zegocloud/zego-uikit-prebuilt";
+import "./Room.css";
 
 function Room() {
   const { roomId } = useParams();
@@ -19,7 +20,6 @@ function Room() {
 
     zp.joinRoom({
       container: element,
-
       scenario: {
         mode: ZegoUIKitPrebuilt.VideoConference,
       },
@@ -27,8 +27,8 @@ function Room() {
   };
 
   return (
-    <div className="room">
-      <div ref={myMeeting} />
+    <div className="room-container">
+      <div className="zego-meeting" ref={myMeeting} />
     </div>
   );
 }
