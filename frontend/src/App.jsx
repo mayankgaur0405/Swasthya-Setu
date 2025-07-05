@@ -25,7 +25,7 @@ const AppWrapper = () => {
   const { isAuthenticated, setIsAuthenticated, setUser } = useContext(Context);
   const location = useLocation();
 
-  const hideFooterRoutes = ["/video-call", "/room"];
+  const hideFooterRoutes = ["/my-appointment","/appointment","/about","/video-call", "/room"];
 
   const shouldHideFooter = hideFooterRoutes.some((path) =>
     location.pathname.startsWith(path)
