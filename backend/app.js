@@ -37,5 +37,9 @@ app.use("/api/v1/appointment", appointmentRouter);
 
 dbConnection();
 
+app.get("/", (req, res) => {
+  res.send("Swasthya-Setu API is running...");
+});
+
 app.use(errorMiddleware);
 export default app;
